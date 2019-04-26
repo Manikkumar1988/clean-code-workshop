@@ -21,11 +21,31 @@ public class Customer {
 
   public String statement() {
 
-    String result = getString();
+    String result = "Rental Record for " + getName() + "\n";
+
+    for (Rental each : rentals) {
+      result += each.getLineItem();
+    }
 
     result += "Amount owed is " + String.valueOf(getTotalAmount()) + "\n";
     result += "You earned " + String.valueOf(getFrequentRenterPoints())
         + " frequent renter points";
+    return result;
+  }
+
+
+
+  public String htmlStatement() {
+
+    String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br/>";
+
+    for (Rental each : rentals) {
+      result += each.getLineItem();
+    }
+
+    result += "Amount owed is <b>" + String.valueOf(getTotalAmount()) + "</b><br/>";
+    result += "You earned " + String.valueOf(getFrequentRenterPoints())
+            + " frequent renter points";
     return result;
   }
 
@@ -38,14 +58,6 @@ public class Customer {
     return frequentRenterPoints;
   }
 
-
-  private String getString() {
-    String result = "Rental Record for " + getName() + "\n";
-    for (Rental each : rentals) {
-      result += each.getLineItem();
-    }
-    return result;
-  }
 
 
   private double getTotalAmount() {
