@@ -139,4 +139,39 @@ public class CustomerTest {
 
     }
 
+
+    @Test
+    public void singleLoopVsMultiple() {
+        for (int j = 0; j < 100; j++) {
+
+            //single loop
+            int x = 0, y = 0, z = 0;
+            long l = System.currentTimeMillis();
+            for (int i = 0; i < 100000000; i++) {
+                x++;
+                y++;
+                z++;
+            }
+            l = System.currentTimeMillis() - l;
+
+
+            //multiple loops doing the same thing
+            int a = 0, b = 0, c = 0;
+            long m = System.currentTimeMillis();
+            for (int i = 0; i < 100000000; i++) {
+                a++;
+            }
+            for (int i = 0; i < 100000000; i++) {
+                b++;
+            }
+            for (int i = 0; i < 100000000; i++) {
+                c++;
+            }
+            m = System.currentTimeMillis() - m;
+            System.out.println(String.format("%d,%d", l, m));
+
+        }
+    }
+
+
 }
